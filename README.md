@@ -9,4 +9,4 @@ Contains the CloudFormation code for network setup using this YAML template for 
 Contains the CloudFormation code for server provisioning using this YAML template for building the cloud infrastructure, as required for the project. 
 
 #### Load balancer URL to access website
-http://myuda-webap-1h0a36inffrxq-1661967146.us-west-2.elb.amazonaws.com/
+http://myuda-webap-mwr13o75oq1z-1657077206.us-west-2.elb.amazonaws.com/
