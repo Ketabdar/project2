@@ -2,5 +2,13 @@
 	{
 		"ParameterKey": "EnvironmentName",
 		"ParameterValue": "UdacityProject"
+	},
+	{
+		"ParameterKey": "CidrIp",
+		"ParameterValue": "0.0.0.0/0"
+	},
+	{
+		"ParameterKey": "IpProtocol",
+		"ParameterValue": "tcp"
 	}
 ]

@@ -1,8 +1,15 @@
 Parameters:
-
     EnvironmentName:
         Description: An environment name that will be prefixed to resource names
         Type: String  
+     
+    CidrIp:
+        Description: IP address range for allowing the traffic in or out
+        Type: String  
+        
+    IpProtocol:
+        Description: IP protocol name
+        Type: String     
 
 Resources:
   LBSecGroup:
@@ -13,15 +20,15 @@ Resources:
         Fn::ImportValue:
           !Sub "${EnvironmentName}-VPCID"
       SecurityGroupIngress:
-      - IpProtocol: tcp
+      - IpProtocol: !Sub "${IpProtocol}"
         FromPort: 80
         ToPort: 80
-        CidrIp: 0.0.0.0/0
+        CidrIp: !Sub "${CidrIp}"
       SecurityGroupEgress:
-      - IpProtocol: tcp
+      - IpProtocol: !Sub "${IpProtocol}"
         FromPort: 80
         ToPort: 80
-        CidrIp: 0.0.0.0/0
+        CidrIp: !Sub "${CidrIp}"
   WebServerSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -30,19 +37,19 @@ Resources:
         Fn::ImportValue:
           !Sub "${EnvironmentName}-VPCID"
       SecurityGroupIngress:
-      - IpProtocol: tcp
+      - IpProtocol: !Sub "${IpProtocol}"
         FromPort: 80
         ToPort: 80
-        CidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
+        CidrIp: !Sub "${CidrIp}"
+      - IpProtocol: !Sub "${IpProtocol}"
         FromPort: 22
         ToPort: 22
-        CidrIp: 0.0.0.0/0
+        CidrIp: !Sub "${CidrIp}"
       SecurityGroupEgress:
-      - IpProtocol: tcp
+      - IpProtocol: !Sub "${IpProtocol}"
         FromPort: 0
         ToPort: 65535
-        CidrIp: 0.0.0.0/0
+        CidrIp: !Sub "${CidrIp}"
         
   WebAppLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
